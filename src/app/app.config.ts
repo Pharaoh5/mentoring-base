@@ -5,9 +5,10 @@ import { routes } from "./app.routes";
 import { provideHttpClient } from "@angular/common/http";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideStore } from '@ngrx/store';
-import { userReducer } from "./user-list/store/user.reducer";
+import { userReducer } from "./store/store-todo/store-user/user.reducer";
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { todoReducer } from "./todos-list/store/todo.reducer";
+import { todoReducer } from "./store//store-todo/todo.reducer";
+import { provideEffects } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,9 +17,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync("noop"),
     provideAnimationsAsync(),
     provideStore({
-      users: userReducer,
-      todos: todoReducer,
+        todos: todoReducer,
+        users: userReducer.reducer,
     }),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideEffects()
 ]
 };

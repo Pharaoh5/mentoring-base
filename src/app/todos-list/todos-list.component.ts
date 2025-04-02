@@ -3,14 +3,14 @@ import { TodosApiService } from "../todos-api.service";
 import { Todo } from "../todo.interface";
 import { TodosCardComponent } from "./todos-card/todos-card.component";
 import { AsyncPipe, NgFor } from "@angular/common";
-import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
+import { CreateTodoFormComponent } from "../dialog/create-todo-form/create-todo-form.component";
 import { MatDialog } from "@angular/material/dialog";
 import { MatButton } from "@angular/material/button";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SnackbarComponent } from "../snackbar/snackbar.component";
 import { Store } from "@ngrx/store";
-import { selectTodos } from "./store/todos.selectors";
-import { TodosActions } from "./store/todos.actions";
+import { selectTodos } from "../store/store-todo/todos.selectors";
+import { TodosActions } from "../store/store-todo/todos.actions";
 
 @Component({
   selector: "app-todos-list",
@@ -33,7 +33,7 @@ export class TodosListComponent {
 
   constructor() {
       this.todosApiService.getTodos().subscribe(
-        (todos: Todo[]) => 
+        (todos: Todo[]) =>
           this.store.dispatch(TodosActions.set({todos: todos}))
       )
   }
@@ -67,4 +67,4 @@ export class TodosListComponent {
       }
     });
   }
-} 
+}

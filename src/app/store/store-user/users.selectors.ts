@@ -12,6 +12,6 @@ interface AppState {
 const selectUsersFeature = (state: AppState) => state.users
 
 export const selectUsers = createSelector(
-    selectUsersFeature,
+  selectUsersFeature,
     (state: UserState) => state.users
 )

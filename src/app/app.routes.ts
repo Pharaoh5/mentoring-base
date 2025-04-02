@@ -8,6 +8,7 @@ import { AdminGuard } from "./guard/guard.guard";
 export const routes: Routes = [
     {
         path: "",
+        pathMatch: "full",
         component: MainComponent,
     },
     {

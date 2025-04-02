@@ -4,7 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { TodoConfirmationComponent } from "./todo-confirmation.component.ts/todo-confirmation.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SnackbarComponent } from "../../snackbar/snackbar.component";
-import { EditTodoDialogComponent } from "../edit-todo-dialog-component/edit-todo-dialog-component";
+import { EditTodoDialogComponent } from "../../dialog/edit-todo-dialog-component/edit-todo-dialog-component";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";

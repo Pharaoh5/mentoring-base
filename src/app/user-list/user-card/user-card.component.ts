@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { User } from "../../user.interface.ts";
 import { MatDialog } from "@angular/material/dialog";
-import { EditUserDialogComponent } from "../edit-user-dialog-component/edit-user-dialog-component.js";
+import { EditUserDialogComponent } from "../../dialog/edit-user-dialog-component/edit-user-dialog-component.js";
 import { UserConfirmationComponent } from "./user-confirmation/user-confirmation.component.js";
 import { MatSnackBar} from "@angular/material/snack-bar";
 import { SnackbarComponent } from "../../snackbar/snackbar.component.js";
