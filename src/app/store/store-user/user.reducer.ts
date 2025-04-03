@@ -1,5 +1,5 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
-import { User } from "../../user.interface.ts.js";
+import { User } from "../../interface/user.interface";
 import { UsersActions } from "./users.actions.js";
 
 interface UserState {

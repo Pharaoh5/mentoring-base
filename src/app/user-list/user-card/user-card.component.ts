@@ -6,16 +6,16 @@ import {
   Input,
   Output,
 } from "@angular/core";
-import { User } from "../../user.interface.ts";
+import { User } from "../../interface/user.interface";
 import { MatDialog } from "@angular/material/dialog";
 import { EditUserDialogComponent } from "../../dialog/edit-user-dialog-component/edit-user-dialog-component.js";
-import { UserConfirmationComponent } from "./user-confirmation/user-confirmation.component.js";
 import { MatSnackBar} from "@angular/material/snack-bar";
 import { SnackbarComponent } from "../../snackbar/snackbar.component.js";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { SwadowDirective } from "../../directives/swadow.directive.js";
+import { ConfirmationComponent } from "../../dialog/confirmation/confirmation.component.js";
 
 @Component({
   selector: "app-user-card",
@@ -40,7 +40,11 @@ export class UserCardComponent {
   private _snackBar = inject(MatSnackBar);
 
   onUserDelete(UserId: number) {
-    const dialogRef = this.dialog.open(UserConfirmationComponent);
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      data: {
+        text: "пользователя"
+      }
+    });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.userCardDelete.emit(UserId);

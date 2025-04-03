@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { TodosApiService } from "../todos-api.service";
-import { Todo } from "../todo.interface";
+import { TodosApiService } from "../api/todos-api.service";
+import { Todo } from "../interface/todo.interface";
 import { TodosCardComponent } from "./todos-card/todos-card.component";
 import { AsyncPipe, NgFor } from "@angular/common";
-import { CreateTodoFormComponent } from "../dialog/create-todo-form/create-todo-form.component";
 import { MatDialog } from "@angular/material/dialog";
 import { MatButton } from "@angular/material/button";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -11,6 +10,7 @@ import { SnackbarComponent } from "../snackbar/snackbar.component";
 import { Store } from "@ngrx/store";
 import { selectTodos } from "../store/store-todo/todos.selectors";
 import { TodosActions } from "../store/store-todo/todos.actions";
+import { TodoFormComponent } from "../dialog/todo-form/todo-form.component";
 
 @Component({
   selector: "app-todos-list",
@@ -47,7 +47,11 @@ export class TodosListComponent {
   }
 
   createTodo() {
-    const dialogRef = this.dialog.open(CreateTodoFormComponent)
+    const dialogRef = this.dialog.open(TodoFormComponent, {
+      data: {
+        text: "Создать задачу"
+      }
+    })
 
     dialogRef.afterClosed().subscribe(form => {
       if (form) {

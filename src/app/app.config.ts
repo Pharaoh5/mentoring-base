@@ -5,7 +5,7 @@ import { routes } from "./app.routes";
 import { provideHttpClient } from "@angular/common/http";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideStore } from '@ngrx/store';
-import { userReducer } from "./store/store-todo/store-user/user.reducer";
+import { userReducer } from "./store/store-user/user.reducer";
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { todoReducer } from "./store//store-todo/todo.reducer";
 import { provideEffects } from '@ngrx/effects';

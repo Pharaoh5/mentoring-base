@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from "@angular/core";
-import { Todo } from "../../todo.interface";
+import { Todo } from "../../interface/todo.interface";
 import { MatDialog } from "@angular/material/dialog";
-import { TodoConfirmationComponent } from "./todo-confirmation.component.ts/todo-confirmation.component";
+import { ConfirmationComponent } from "../../dialog/confirmation/confirmation.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SnackbarComponent } from "../../snackbar/snackbar.component";
-import { EditTodoDialogComponent } from "../../dialog/edit-todo-dialog-component/edit-todo-dialog-component";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-import { TruncatePipe } from "../../truncate.pipe";
+import { TruncatePipe } from "../../pipe/truncate.pipe";
 import { SwadowDirective } from "../../directives/swadow.directive";
+import { TodoFormComponent } from "../../dialog/todo-form/todo-form.component";
 
 @Component({
   selector: "app-todos-card",
@@ -32,7 +32,11 @@ export class TodosCardComponent {
   editTodo = new EventEmitter()
 
   onDeleteTodo(todoId: number) {
-    const dialogRef = this.dialog.open(TodoConfirmationComponent)
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      data: {
+        text: "задачу"
+      }
+    })
 
     dialogRef.afterClosed().subscribe((result) => {
       if(result) {
@@ -47,8 +51,9 @@ export class TodosCardComponent {
     })
   }
   onEditTodo() {
-    const dialogRef = this.dialog.open(EditTodoDialogComponent, {
+    const dialogRef = this.dialog.open(TodoFormComponent, {
       data: {
+        text: "Редактировать задачу",
         todo: this.todo
       }
     })

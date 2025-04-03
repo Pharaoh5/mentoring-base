@@ -16,11 +16,11 @@
   </p>
 </mat-card-content>
 <mat-card-actions>
-  <button shadow mat-raised-button color="warn" (click)="onUserDelete(user.id)" style="margin-right: 8px">
+  <button shadow mat-raised-button color="warn" (click)="onUserDelete(user.id)" style="margin-right: 8px; min-width: 80px;">
     <mat-icon>delete</mat-icon>
     Удалить
   </button>
-  <button shadow mat-raised-button color="primary" (click)="onUserEdit()">
+  <button style="min-width: 130px;" shadow mat-raised-button color="primary" (click)="onUserEdit()">
     <mat-icon>edit</mat-icon>
     Редактировать
   </button>

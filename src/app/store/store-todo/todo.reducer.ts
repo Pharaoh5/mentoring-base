@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { Todo } from "../../todo.interface";
+import { Todo } from "../../interface/todo.interface";
 import { TodosActions } from "./todos.actions";
 
 export interface TodoState {
