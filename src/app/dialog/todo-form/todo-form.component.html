@@ -30,7 +30,7 @@
               mat-raised-button
               (click)="saveForm()"
               [disabled]="form.invalid">
-              {{data.text.slice(0, -7)}}
+              {{data.text.split(' ').slice(0, -1).join(' ').trimEnd()}}
             <mat-icon>add</mat-icon>
         </button>
       </div>

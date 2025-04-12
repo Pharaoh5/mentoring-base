@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { User } from "../../interface/user.interface";
 import { MatDialog } from "@angular/material/dialog";
-import { EditUserDialogComponent } from "../../dialog/edit-user-dialog-component/edit-user-dialog-component";
 import { MatSnackBar} from "@angular/material/snack-bar";
 import { SnackbarComponent } from "../../snackbar/snackbar.component";
 import { MatButtonModule } from "@angular/material/button";
@@ -16,6 +15,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { SwadowDirective } from "../../directives/swadow.directive";
 import { ConfirmationComponent } from "../../dialog/confirmation/confirmation.component";
+import { UserFormComponent } from "../../dialog/user-form/user-form.component";
 
 @Component({
   selector: "app-user-card",
@@ -59,8 +59,11 @@ export class UserCardComponent {
   }
 
   onUserEdit() {
-    const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      data: {user: this.user,},
+    const dialogRef = this.dialog.open(UserFormComponent, {
+      data: {
+        user: this.user,
+        text: "Редактировать пользователя"
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

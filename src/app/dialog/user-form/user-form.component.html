@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Редактировать пользователя</h2>
+<h2 mat-dialog-title>{{data.text}}</h2>
 <div mat-dialog-content>
   <form action="" [formGroup]="form">
     <input type="hidden" formControlName="id" />
@@ -61,9 +61,9 @@
     type="button"
     [mat-dialog-close]="form.value"
     [disabled]="form.invalid"
-    matTooltip="Редактировать данные пользователя"
+    [matTooltip]="data.text"
     matTooltipPosition="above"
   >
-    edit user
+    {{data.text.split(' ').slice(0, -1).join(' ').trimEnd()}}
   </button>
 </div>
