@@ -1,5 +1,5 @@
 import { AsyncPipe, NgFor } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from "@angular/core";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { User } from "../interface/user.interface";
 import { MatDialog } from "@angular/material/dialog";
@@ -12,6 +12,7 @@ import { UsersActions } from "../store/store-user/users.actions";
 import { selectUsers } from "../store/store-user/users.selectors";
 import { UsersApiService } from "../api/users-api.service";
 import { UserFormComponent } from "../dialog/user-form/user-form.component";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: "app-users-list",
@@ -30,6 +31,8 @@ export class UsersListComponent {
 
   private readonly store = inject(Store)
   public readonly users$ = this.store.select(selectUsers)
+
+  private destroyRef = inject(DestroyRef)
 
   deleteUser(id: number) {
     this.store.dispatch(UsersActions.delete({id}))
@@ -70,11 +73,30 @@ export class UsersListComponent {
   }
 
   constructor() {
-    this.usersApiService
-      .getUsers()
-      .subscribe((item: User[]) => {
-        this.store.dispatch(UsersActions.set({users: item}))
+    const storedUsers = localStorage.getItem("users")
+
+    if (storedUsers) {
+      try {
+        this.store.dispatch(UsersActions.set({users: JSON.parse(storedUsers)}));
+      } catch (error) {
+        console.error('Ошибка парсинга users:', error);
+        localStorage.removeItem("users");
+        this.loadFromApi()
       }
-    );
+    } else {
+      this.loadFromApi()
+    }
+  }
+
+  private loadFromApi() {
+    this.usersApiService
+    .getUsers()
+    .pipe(
+      takeUntilDestroyed(this.destroyRef) // ← Автоматическая отписка
+    )
+    .subscribe({
+      next: (users: User[]) => this.store.dispatch(UsersActions.set({ users })),
+      error: (err) => console.error('Ошибка:', err)
+    });
   }
 }

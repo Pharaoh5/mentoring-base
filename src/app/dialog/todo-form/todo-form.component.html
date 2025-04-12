@@ -1,37 +1,37 @@
 <h2 mat-dialog-title>{{data.text}}</h2>
 <div mat-dialog-content>
-    <form class="form"[formGroup]="form">
+    <form class="form" [formGroup]="form">
       <input type="hidden" formControlName="id" />
-          <mat-form-field class="form-input">
-              <mat-label>Текст задачи</mat-label>
-              <input matInput formControlName="title">
-              <mat-error>Некорректное значение</mat-error>
-          </mat-form-field>
+      <mat-form-field class="form-input">
+          <mat-label>Текст задачи</mat-label>
+          <input matInput formControlName="title">
+          <mat-error>Некорректное значение</mat-error>
+      </mat-form-field>
 
-          <mat-form-field class="form-input">
-              <mat-label>Автор задачи</mat-label>
-              <input matInput formControlName="userId">
-              <mat-error>Некорректное значение</mat-error>
-          </mat-form-field>
+      <mat-form-field class="form-input">
+          <mat-label>Автор задачи</mat-label>
+          <input matInput formControlName="userId">
+          <mat-error>Некорректное значение</mat-error>
+      </mat-form-field>
 
-          <mat-form-field class="form-input">
-              <mat-label>Задача завершена</mat-label>
-              <input matInput formControlName="completed">
-              <mat-error>Некорректное значение</mat-error>
-          </mat-form-field>
-      </form>
-      <div mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Отмена</button>
-        <button class="button-form"
-              [matTooltip]="data.text"
-              matTooltipPosition="above" swadow class="edit-button"
-              type="button"
-              matIconSuffix
-              mat-raised-button
-              (click)="saveForm()"
-              [disabled]="form.invalid">
-              {{data.text.split(' ').slice(0, -1).join(' ').trimEnd()}}
-            <mat-icon>add</mat-icon>
-        </button>
-      </div>
+      <mat-form-field class="form-input">
+          <mat-label>Задача завершена</mat-label>
+          <input matInput formControlName="completed">
+          <mat-error>Некорректное значение</mat-error>
+      </mat-form-field>
+    </form>
+    <div mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Отмена</button>
+      <button class="button-form"
+        [matTooltip]="data.text"
+        matTooltipPosition="above" swadow class="edit-button"
+        type="button"
+        matIconSuffix
+        mat-raised-button
+        (click)="saveForm()"
+        [disabled]="form.invalid">
+        {{data.text.split(' ').slice(0, -1).join(' ').trimEnd()}}
+          <mat-icon>add</mat-icon>
+      </button>
+    </div>
 </div>
