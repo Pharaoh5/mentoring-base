@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { User } from "../../interface/user.interface";
-import { UsersActions } from "./users.actions.js";
+import { UsersActions } from "./users.actions";
 
 interface UserState {
     users: User[];

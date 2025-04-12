@@ -8,14 +8,14 @@ import {
 } from "@angular/core";
 import { User } from "../../interface/user.interface";
 import { MatDialog } from "@angular/material/dialog";
-import { EditUserDialogComponent } from "../../dialog/edit-user-dialog-component/edit-user-dialog-component.js";
+import { EditUserDialogComponent } from "../../dialog/edit-user-dialog-component/edit-user-dialog-component";
 import { MatSnackBar} from "@angular/material/snack-bar";
-import { SnackbarComponent } from "../../snackbar/snackbar.component.js";
+import { SnackbarComponent } from "../../snackbar/snackbar.component";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
-import { SwadowDirective } from "../../directives/swadow.directive.js";
-import { ConfirmationComponent } from "../../dialog/confirmation/confirmation.component.js";
+import { SwadowDirective } from "../../directives/swadow.directive";
+import { ConfirmationComponent } from "../../dialog/confirmation/confirmation.component";
 
 @Component({
   selector: "app-user-card",
