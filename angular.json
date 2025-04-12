@@ -21,6 +21,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "baseHref": "/mentoring-base/",
+            "deployUrl": "/mentoring-base/",
             "polyfills": [
               "zone.js"
             ],
