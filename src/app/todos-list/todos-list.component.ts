@@ -31,13 +31,6 @@ export class TodosListComponent {
 
   private _snackBar = inject(MatSnackBar);
 
-  constructor() {
-      this.todosApiService.getTodos().subscribe(
-        (todos: Todo[]) =>
-          this.store.dispatch(TodosActions.set({todos: todos}))
-      )
-  }
-
   deleteTodo (id: number) {
     this.store.dispatch(TodosActions.delete({id}))
   }
@@ -71,4 +64,28 @@ export class TodosListComponent {
       }
     });
   }
+
+  constructor() {
+    const todosStorage = localStorage.getItem("todos");
+
+    if (todosStorage) {
+      try {
+        this.store.dispatch(TodosActions.set({todos: JSON.parse(todosStorage)}));
+      } catch (error) {
+        console.error("Ошибка парсинга: " + error);
+        localStorage.removeItem("todos");
+        this.ApiFromLoad();
+      }
+    } else {
+      this.ApiFromLoad()
+    }
+}
+
+private ApiFromLoad () {
+  this.todosApiService.getTodos().subscribe({
+    next: (todos: Todo[]) =>
+      this.store.dispatch(TodosActions.set({todos: todos})),
+    error: (erorr) => console.error("Ошибка: ", erorr)
+  })
+}
 }
